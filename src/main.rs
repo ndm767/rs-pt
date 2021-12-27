@@ -16,9 +16,16 @@ fn main() {
 
     for x in 0..400 {
         for y in 0..400 {
+            /* orthographic camera
             let ray = Ray::new(
                 Vec3::new((x as f64) / 200.0 - 1.0, (y as f64) / 200.0 - 1.0, 0.0),
                 Vec3::new(0.0, 0.0, 1.0),
+            );
+            */
+            // perspective camera
+            let ray = Ray::new(
+                Vec3::new(0.0, 0.0, 0.0),
+                Vec3::new((x as f64) / 200.0 - 1.0, (y as f64) / 200.0 - 1.0, 1.0),
             );
             let hit_ret = sphere.calc_intersection(ray);
             if hit_ret.is_none() {
