@@ -54,7 +54,7 @@ impl Hittable for Sphere {
         }
 
         let hit_pos: Vec3 = ray.orig + ray.dir * t0;
-        let hit_norm: Vec3 = hit_pos - self.center;
+        let hit_norm: Vec3 = (hit_pos - self.center).normalize();
         Some(HitData::new(hit_pos, hit_norm, t0))
     }
 }
