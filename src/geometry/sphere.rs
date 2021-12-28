@@ -16,7 +16,7 @@ impl Sphere {
 }
 
 impl Hittable for Sphere {
-    fn calc_intersection(&self, ray: Ray) -> Option<HitData> {
+    fn calc_intersection(&self, ray: &Ray) -> Option<HitData> {
         let dist: Vec3 = ray.orig - self.center;
         let a: f64 = ray.dir.dot(ray.dir);
         let b: f64 = 2.0 * ray.dir.dot(dist);
