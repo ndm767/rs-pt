@@ -59,6 +59,11 @@ impl Hittable for Sphere {
             }
         }
 
+        const EPSILON: f64 = 1e-8;
+        if t0 < EPSILON {
+            return None;
+        }
+
         let hit_pos: Vec3 = ray.orig + ray.dir * t0;
         let hit_norm: Vec3 = (hit_pos - self.center).normalize();
         Some(HitData::new(hit_pos, hit_norm, t0, ray.depth + 1, self.mat))
