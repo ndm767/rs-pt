@@ -7,15 +7,13 @@ use crate::scene::Scene;
 #[derive(Copy, Clone)]
 pub struct PerfectSpecular {
     pub emission: Vec3,
-    pub diffuse: Vec3,
     pub reflectance: f64,
 }
 
 impl PerfectSpecular {
-    pub fn new(emission: Vec3, diffuse: Vec3, reflectance: f64) -> PerfectSpecular {
+    pub fn new(emission: Vec3, reflectance: f64) -> PerfectSpecular {
         PerfectSpecular {
             emission,
-            diffuse,
             reflectance,
         }
     }

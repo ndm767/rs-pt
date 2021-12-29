@@ -24,11 +24,8 @@ fn main() {
         Vec3::new(1.0, 0.0, 0.0),
         0.9,
     ));
-    let white: Material = Material::PerfectSpecular(PerfectSpecular::new(
-        Vec3::new(1.0, 1.0, 1.0),
-        Vec3::new(1.0, 1.0, 0.0),
-        0.9,
-    ));
+    let white: Material =
+        Material::PerfectSpecular(PerfectSpecular::new(Vec3::new(1.0, 1.0, 1.0), 0.9));
     scene.add_object(Object::Sphere(Sphere::new(
         Vec3::new(1.0, 0.0, 2.0),
         1.0,

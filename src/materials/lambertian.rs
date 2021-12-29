@@ -38,6 +38,6 @@ impl Brdf for Lambertian {
             prev_weight * self.reflectance,
         );
 
-        new_ray.trace(scene)
+        new_ray.trace(scene) * self.diffuse
     }
 }
