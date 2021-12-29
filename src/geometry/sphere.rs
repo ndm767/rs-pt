@@ -1,17 +1,23 @@
 use super::HitData;
 use super::Hittable;
 use crate::linalg::Vec3;
+use crate::materials::Material;
 use crate::ray::Ray;
 
 #[derive(Copy, Clone)]
 pub struct Sphere {
     pub center: Vec3,
     pub radius: f64,
+    pub mat: Material,
 }
 
 impl Sphere {
-    pub fn new(center: Vec3, radius: f64) -> Sphere {
-        Sphere { center, radius }
+    pub fn new(center: Vec3, radius: f64, mat: Material) -> Sphere {
+        Sphere {
+            center,
+            radius,
+            mat,
+        }
     }
 }
 
@@ -55,6 +61,6 @@ impl Hittable for Sphere {
 
         let hit_pos: Vec3 = ray.orig + ray.dir * t0;
         let hit_norm: Vec3 = (hit_pos - self.center).normalize();
-        Some(HitData::new(hit_pos, hit_norm, t0))
+        Some(HitData::new(hit_pos, hit_norm, t0, ray.depth + 1, self.mat))
     }
 }
