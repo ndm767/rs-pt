@@ -29,6 +29,22 @@ impl Vec3 {
             z: self.z / mag,
         }
     }
+
+    pub fn rotate(&self, pitch: f64, yaw: f64, roll: f64) -> Vec3 {
+        // just apply 3d rotation matrix
+        let r = roll;
+        let y = yaw;
+        let p = pitch;
+        Vec3 {
+            x: self.x * r.cos() * y.cos()
+                + self.y * (r.cos() * y.sin() * p.sin() - r.sin() * p.cos())
+                + self.z * (r.cos() * y.sin() * p.cos() + r.sin() * p.sin()),
+            y: self.x * r.sin() * y.cos()
+                + self.y * (r.sin() * y.sin() * p.sin() + r.cos() * p.cos())
+                + self.z * (r.sin() * y.sin() * p.cos() - r.cos() * p.sin()),
+            z: self.x * -1.0 * y.sin() + self.y * y.cos() * p.sin() + self.z * y.cos() * p.cos(),
+        }
+    }
 }
 
 // operations

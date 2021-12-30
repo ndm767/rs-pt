@@ -3,7 +3,7 @@ use crate::linalg::Vec3;
 extern crate sdl2;
 
 use sdl2::event::Event;
-use sdl2::keyboard::Keycode;
+pub use sdl2::keyboard::Keycode;
 use sdl2::pixels::Color;
 use sdl2::rect::Point;
 
@@ -105,13 +105,21 @@ impl Display {
         }
     }
 
-    // not currently used but I might want this in the future
-    pub fn _is_key_down(&mut self, keycode: Keycode) -> bool {
+    pub fn is_key_down(&mut self, keycode: Keycode) -> bool {
         self.keys_down.contains(&keycode)
+    }
+
+    pub fn are_keys_down(&self) -> bool {
+        !self.keys_down.is_empty()
     }
 
     pub fn set_pixel(&mut self, x: usize, y: usize, color: Vec3) {
         self.pixels[x][y] += color;
         self.pixel_iters[x][y] += 1;
+    }
+
+    pub fn reset_pixel(&mut self, x: usize, y: usize, color: Vec3) {
+        self.pixels[x][y] = color;
+        self.pixel_iters[x][y] = 1;
     }
 }
