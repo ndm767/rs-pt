@@ -29,7 +29,7 @@ impl Brdf for PerfectSpecular {
         }
 
         let new_ray = Ray::new(
-            hit_data.hit_pos + hit_data.hit_norm * SMALL,
+            hit_data.hit_pos,
             new_dir,
             hit_data.depth + 1,
             prev_weight * self.reflectance,
