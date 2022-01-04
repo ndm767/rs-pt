@@ -38,8 +38,11 @@ impl Camera {
 
     pub fn gen_ray(&self, x: usize, y: usize, width: usize, height: usize) -> Ray {
         let mut dir = Vec3::new(0.0, 0.0, 1.0);
-        dir.x = (x as f64) / ((width as f64) / 2.0) - 1.0;
-        dir.y = (y as f64) / ((height as f64) / 2.0) - 1.0;
+        // random sampling within the pixel to smooth out edges
+        let noise_x: f64 = rand::random();
+        let noise_y: f64 = rand::random();
+        dir.x = (x as f64 + noise_x) / ((width as f64) / 2.0) - 1.0;
+        dir.y = (y as f64 + noise_y) / ((height as f64) / 2.0) - 1.0;
         dir = dir.rotate(self.pitch, self.yaw, self.roll);
         dir = dir.normalize();
         Ray {
